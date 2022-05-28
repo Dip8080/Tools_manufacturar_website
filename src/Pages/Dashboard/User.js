@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const User = () => {
     const [user, setUser] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/user')
+        fetch('https://aqueous-chamber-57990.herokuapp.com/user')
         .then(res=>res.json())
         .then(data=>setUser(data))
     },[])
@@ -36,7 +36,7 @@ const SingleAdmin = props =>{
     const {email,role} = props.obj;
     const index = props.in;
     const hadleamin =()=>{
-        fetch(`http://localhost:5000/user/admin/${email}`,{
+        fetch(`https://aqueous-chamber-57990.herokuapp.com/user/admin/${email}`,{
             method : 'PUT',
 
         })
