@@ -5,17 +5,16 @@ import { useForm } from "react-hook-form";
 import Loading from '../Loadeing/Loading';
 import { Link, useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
+import UseToken from '../Hooks/useToken';
 
 const Register = () => {
     const [signInWithGoogle, googleUser, g_loading,  g_error] = useSignInWithGoogle(auth);
     const [updateProfile, User_updating, User_error] = useUpdateProfile(auth);
     const nevigate = useNavigate();
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword,user,loading,error,] = useCreateUserWithEmailAndPassword(auth);
+
+    const [token] = UseToken(user || googleUser)  
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = async data =>{
          console.log(data)
@@ -35,7 +34,7 @@ const Register = () => {
        
     return (
         <div >
-            <h2 className='text-center text-3xl'>please register </h2>
+            {/* <h2 className='text-center text-3xl'>please register </h2> */}
         <div className='flex h-screen justify-center items-center'>
         <div class="card w-96 bg-neutral text-neutral-content">
   <div class="card-body items-center text-center">
@@ -48,7 +47,7 @@ const Register = () => {
   </label>
   <input 
   type="text" 
-  placeholder="enter your name address" 
+  placeholder="enter your name " 
   class="input input-bordered w-full max-w-xs"
   {...register("name", { required: true })}
   />
@@ -60,7 +59,7 @@ const Register = () => {
   </label>
   <input 
   type="email" 
-  placeholder="enter your email address" 
+  placeholder="enter your email " 
   class="input input-bordered w-full max-w-xs"
   {...register("email", { required: true })}
   />
@@ -82,7 +81,7 @@ const Register = () => {
 </div>
       {/* //////////// */}
       {ErrorSignin}
-      <input  class="btn w-full btn-success input-bordered" type="submit" value='Login' />
+      <input  class="btn w-full btn-success input-bordered" type="submit" value='register' />
     </form>
     <p>already have an account ? <Link to='/login' className='text-secondary'>please Login</Link></p>
     

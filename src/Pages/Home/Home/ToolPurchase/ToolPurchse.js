@@ -1,6 +1,9 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ToolPurchse = props => {
@@ -9,17 +12,16 @@ const ToolPurchse = props => {
     const [user] = useAuthState(auth)
     const handleOrder = event =>{
         event.preventDefault();
-        const userName= event.target.name.value;
-        const UserEmail= event.target.email.value;
         const order=parseInt(event.target.quantity.value);
         const address = event.target.address.value;
         const phonNO = event.target.phonNo.value;
+        
         const purchseOrder ={
             purchseId : _id,
             productName: name,
             productImg : img,
-            clintName : userName,
-            clintEmail : UserEmail,
+            clintName : user.displayName,
+            clintEmail : user.email,
             clintAddress : address,
             clintPhon : phonNO,
             ClintOrder : order
@@ -30,6 +32,19 @@ const ToolPurchse = props => {
         if(order<miniOrder){
             return alert(`minimum order : ${miniOrder}`)
         }
+        fetch(`http://localhost:5000/orders`, {
+            method: 'POST',
+            body: JSON.stringify(purchseOrder),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast('item addded')
+
+            });
+
     }
     
     return (

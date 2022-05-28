@@ -13,6 +13,9 @@ const Header = () => {
         <li><Link to={'/tools'}>contact</Link></li>
         <li><Link to={'/tools'}>blog</Link></li>
         <li><Link to={'/tools'}>services</Link></li>
+        {
+            user &&    <li><Link to={'/dashboard'}>dashboard</Link></li>
+        }
       
     </>
     const UserSignOut = ()=>{

@@ -34,7 +34,7 @@ const Login = () => {
         }
     return (
         <div >
-            <h2 className='text-center text-3xl'>please login </h2>
+            {/* <h2 className='text-center text-3xl'>please login </h2> */}
         <div className='flex h-screen justify-center items-center'>
         <div class="card w-96 bg-neutral text-neutral-content">
   <div class="card-body items-center text-center">
