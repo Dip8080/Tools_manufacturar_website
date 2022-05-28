@@ -8,11 +8,11 @@ const Header = () => {
     const [user , loading , error] = useAuthState(auth);
     const menu =<>
       
-        <li><Link to={'/tools'}>Tools</Link></li>
-        <li><Link to={'/tools'}>about</Link></li>
+        <li><Link to={'/Alltools'}>Tools</Link></li>
+        <li><Link to={'/about'}>about</Link></li>
         <li><Link to={'/tools'}>contact</Link></li>
-        <li><Link to={'/tools'}>blog</Link></li>
-        <li><Link to={'/tools'}>services</Link></li>
+        <li><Link to={'/blog'}>blog</Link></li>
+       
         {
             user &&    <li><Link to={'/dashboard'}>dashboard</Link></li>
         }
